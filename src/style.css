@@ -124,7 +124,7 @@ section {
     justify-content: center;
     width: 100%;
     height: 100vh;
-    background-image: url('./assets/daniel-sessler-_3DI_vx2ygg-unsplash.jpg');
+    background-image: url('/assets/daniel-sessler-_3DI_vx2ygg-unsplash.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -240,23 +240,23 @@ section {
 }
 
 #about{
-    background: url(./assets/landscape-tropical-green-forest.jpg);
+    background: url('/assets/landscape-tropical-green-forest.jpg');
       background-position: bottom;
   
 }
 
 #project{
-     background: url(./assets/jd-photos-yY1KhFBlisg-unsplash.jpg);
+     background: url('/assets/jd-photos-yY1KhFBlisg-unsplash.jpg');
          background-position: bottom;
 }
 
 #join-us{
-    background: url(./assets/marita-kavelashvili-ugnrXk1129g-unsplash.jpg);
+    background: url('/assets/marita-kavelashvili-ugnrXk1129g-unsplash.jpg');
        background-position: bottom;
 }
 
 #footer{
-    background: url(./assets/matt-artz-nTRDnDdDYk8-unsplash.jpg);
+    background: url('/assets/matt-artz-nTRDnDdDYk8-unsplash.jpg');
     background-position: bottom;
 }
 
