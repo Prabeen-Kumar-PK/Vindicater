@@ -451,14 +451,13 @@ section {
     cursor: pointer;
     transition: all ease .3s;
     text-decoration: none;
-    transform: scale(1);
-
+   
 }
 
 .footer-items:hover {
     color: #00490b;
     text-shadow: 0 0 10px #ffffff;
-    transform: scale(1.5);
+  
 }
 
 #footer .section-box {

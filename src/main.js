@@ -27,9 +27,15 @@ const mobileNav = document.querySelector('#mobile-nav');
 const navLinks = document.querySelectorAll('#mobile-nav .nav-items');
 const pageAnchors = document.querySelectorAll('a[href^="#"]');
 const sections = document.querySelectorAll('section:not(#footer)');
+const navSections = document.querySelectorAll('section');
 const mobileBreakpoint = window.matchMedia('(max-width: 768px)');
 const parallaxBreakpoint = window.matchMedia('(min-width: 901px)');
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+const getTargetIdFromHref = (href) => {
+  if (!href || href === '#') return 'hero';
+  return href.replace('#', '');
+};
 
 const closeMobileNav = () => {
   navBox?.classList.remove('nav-open');
@@ -75,17 +81,24 @@ const getHeaderOffset = () => {
   return -(navHeight + 12);
 };
 
+const setActiveNavLink = (activeId) => {
+  navLinks.forEach((link) => {
+    const targetId = getTargetIdFromHref(link.getAttribute('href'));
+    link.classList.toggle('active', targetId === activeId);
+  });
+};
+
 pageAnchors.forEach((anchor) => {
   anchor.addEventListener('click', (event) => {
-    const targetId = anchor.getAttribute('href');
+    const href = anchor.getAttribute('href');
+    const targetId = getTargetIdFromHref(href);
 
-    if (!targetId || targetId === '#') return;
-
-    const target = document.querySelector(targetId);
+    const target = document.querySelector(`#${targetId}`);
     if (!target) return;
 
     event.preventDefault();
     closeMobileNav();
+    setActiveNavLink(targetId);
 
     lenis.scrollTo(target, {
       offset: getHeaderOffset(),
@@ -121,7 +134,27 @@ const updateSectionParallax = () => {
   });
 };
 
-lenis.on('scroll', updateSectionParallax);
-window.addEventListener('resize', updateSectionParallax);
+const updateActiveSection = () => {
+  const currentScroll = window.scrollY + (navBox?.offsetHeight ?? 0) + 80;
+  let activeSectionId = 'hero';
+
+  navSections.forEach((section) => {
+    if (section.offsetTop <= currentScroll) {
+      activeSectionId = section.id;
+    }
+  });
+
+  setActiveNavLink(activeSectionId);
+};
+
+lenis.on('scroll', () => {
+  updateSectionParallax();
+  updateActiveSection();
+});
+window.addEventListener('resize', () => {
+  updateSectionParallax();
+  updateActiveSection();
+});
 
 updateSectionParallax();
+updateActiveSection();
