@@ -17,7 +17,10 @@ body {
     height: 100vh; */
     background: #000;
     color: aliceblue;
-    scroll-behavior: smooth;
+}
+
+html {
+    scroll-padding-top: 90px;
 }
 
 
@@ -121,10 +124,12 @@ section {
     justify-content: center;
     width: 100%;
     height: 100vh;
-    background-image: url('assets/daniel-sessler-_3DI_vx2ygg-unsplash.jpg');
+    background-image: url('./assets/daniel-sessler-_3DI_vx2ygg-unsplash.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    --section-parallax: 0px;
+    --section-bg-parallax: 0px;
 
 }
 
@@ -148,6 +153,8 @@ section {
     width: 85%;
     overflow: hidden;
     margin-top: 2em;
+    transform: translate3d(0, var(--section-parallax), 0);
+    will-change: transform;
 }
 
 .content-wrap {
@@ -233,23 +240,23 @@ section {
 }
 
 #about{
-    background: url(assets/landscape-tropical-green-forest.jpg);
+    background: url(./assets/landscape-tropical-green-forest.jpg);
       background-position: bottom;
   
 }
 
 #project{
-     background: url(assets/jd-photos-yY1KhFBlisg-unsplash.jpg);
+     background: url(./assets/jd-photos-yY1KhFBlisg-unsplash.jpg);
          background-position: bottom;
 }
 
 #join-us{
-    background: url(assets/marita-kavelashvili-ugnrXk1129g-unsplash.jpg);
+    background: url(./assets/marita-kavelashvili-ugnrXk1129g-unsplash.jpg);
        background-position: bottom;
 }
 
 #footer{
-    background: url(assets/matt-artz-nTRDnDdDYk8-unsplash.jpg);
+    background: url(./assets/matt-artz-nTRDnDdDYk8-unsplash.jpg);
     background-position: bottom;
 }
 
@@ -437,18 +444,21 @@ section {
 .footer-items {
     font-size: 1.2rem;
     line-height: 1.2;
-    color: #e9e9e9;
+    color: #161515;
     text-transform: capitalize;
     animation: bottomIn 1s ease-in-out 0.8s forwards;
     opacity: 0;
     cursor: pointer;
-    transition: .3s;
+    transition: all ease .3s;
+    text-decoration: none;
+    transform: scale(1);
 
 }
 
 .footer-items:hover {
-    color: #00cc1f;
+    color: #00490b;
     text-shadow: 0 0 10px #ffffff;
+    transform: scale(1.5);
 }
 
 #footer .section-box {
@@ -456,12 +466,14 @@ section {
 }
 
 .copyrights {
-    font-size: 14px;
-    color: #e9e9e9;
+    
+    color: #161515;
     text-align: center;
     animation: bottomIn 1s ease-in-out 0.8s forwards;
     opacity: 0;
     padding: 15px;
+    font-size: 18px;
+    border: none;
 }
 
 #footer {
@@ -746,6 +758,52 @@ section {
 
     #join-us .content-wrap {
         padding-bottom: 32px;
+    }
+}
+
+@media (min-width: 901px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    #hero,
+    #about,
+    #project,
+    #join-us {
+        position: sticky;
+        top: 0;
+    }
+
+    #hero {
+        z-index: 1;
+    }
+
+    #about {
+        z-index: 2;
+    }
+
+    #project {
+        z-index: 3;
+    }
+
+    #join-us {
+        z-index: 4;
+    }
+
+    #footer {
+        position: relative;
+        z-index: 5;
+    }
+
+    section {
+        background-position: center calc(50% + var(--section-bg-parallax));
+    }
+
+    #about,
+    #project,
+    #join-us,
+    #footer {
+        background-position: center calc(100% + var(--section-bg-parallax));
     }
 }
 
